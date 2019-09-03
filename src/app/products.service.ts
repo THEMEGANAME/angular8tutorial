@@ -8,14 +8,37 @@ export class ProductsService {
   uri = 'http://localhost:4000/products';
   constructor(private http: HttpClient) { }
 
-  addProduct(Productname, ProductDescription, ProductPrice) {
+  addProduct(ProductName, ProductDescription, ProductPrice) {
     const obj = {
-      Productname,
+      ProductName,
       ProductDescription,
       ProductPrice
     };
     this.http.post(`${this.uri}/add`, obj).subscribe(res => console.log('res:', res));
+  }
 
+  getProducts() {
+    return this.http.get(`${this.uri}`);
+  }
+
+  editProduct(id: number) {
+    return this.http.get(`${this.uri}/edit/${id}`);
+  }
+
+  updateProduct(ProductName, ProductDescription, ProductPrice, id) {
+    const obj = {
+      ProductName,
+      ProductDescription,
+      ProductPrice
+    };
+    this
+      .http
+      .post(`${this.uri}/update/${id}`, obj)
+      .subscribe(res => console.log('Done'));
+  }
+
+  deleteProduct(id: number) {
+    return this.http.get(`${this.uri}/delete/${id}`);
   }
 }
 

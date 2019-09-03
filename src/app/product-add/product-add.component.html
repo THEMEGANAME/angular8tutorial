@@ -33,7 +33,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <button class="btn btn-primary" type="submit" [disabled]="angForm.pristine || angForm.invalid">Create
+                <button 
+                (click)="addProduct(ProductName.value,ProductDescription.value,ProductPrice.value)"
+                class="btn btn-primary" type="submit" [disabled]="angForm.pristine || angForm.invalid">Create
                     Product</button>
             </div>
         </form>
